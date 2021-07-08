@@ -13,7 +13,7 @@ import datetime
 import subprocess
 
 ######################################
-VERSION = 0.1
+VERSION = 0.2
 LOGFILENAME = "intrusion.log"  # Enter output filename
 MODE = 1  # Mode 1: Active | Mode 0: Passive
 
@@ -31,12 +31,36 @@ prevIP = "0.0.0.0"  # Do not change
 
 
 def main():
+# Main Logic of the program
+    import os
+    import sys
+    import time
+
+    # Start timer
+    startTime = time.time()
+
+    # Window title If Windows
+    if os.name == 'nt':
+        os.system('title ' + 'Cisco Analyzer V' + str(VERSION))
+
+    # Fancy banner for #If The device seems up based on ping
     banner()
+
+    # Print version information 
+    sprint(pStatus("GOOD") + 'Cisco Analyzer V' + str(VERSION))
+
+    # Check for updates
     checkUpdate()
+
     menu()
+    
     seperator()
     while True:
         pot()
+
+    Exectime = (time.time() - startTime) / 60 # End timer calculate elapsed time in minutes
+    sprint(pStatus('GOOD') + 'Completed In: ('
+           + str(round(Exectime, 2)) + ' Minutes)')
 
 
 def checkUpdate():
@@ -59,7 +83,7 @@ def checkUpdate():
 
     # Download newest version of 'Cisco-Device-Analyzer.py' from Github with the name 'Cisco-Device-Analyzer_new.py'
     url = \
-        'https://raw.githubusercontent.com/sonicCrypt0r/Vengeful-Honeypot/main/Vengeful-Honeypot.py' #Location Where Updated Source Code Will Be
+        'https://raw.githubusercontent.com/sonicCrypt0r/Vengeful-Honeypot/main/VengefulHoneypot.py' #Location Where Updated Source Code Will Be
     sprint(pStatus('GOOD') + 'Checking For Updates... ')
     r = requests.get(url, verify=False)
     open(newScriptName, 'wb').write(r.content)
@@ -279,25 +303,21 @@ def menu():
 
 
 def banner():
-    print(r"""	
- _   _                        __       _    
-| | | |                      / _|     | |   
-| | | | ___ _ __   __ _  ___| |_ _   _| |   
-| | | |/ _ \ '_ \ / _` |/ _ \  _| | | | |   
-\ \_/ /  __/ | | | (_| |  __/ | | |_| | |   
- \___/ \___|_| |_|\__, |\___|_|__\__,_|_|   
-| | | |            __/ |     | ___ \   | |  
-| |_| | ___  _ __ |___/ _   _| |_/ /__ | |_ 
-|  _  |/ _ \| '_ \ / _ \ | | |  __/ _ \| __|
-| | | | (_) | | | |  __/ |_| | | | (_) | |_ 
-\_| |_/\___/|_|_|_|\___|\__, \_|  \___/ \__|
-       /  | |  _  |      __/ |              
-__   __`| | | |/' |     |___/               
-\ \ / / | | |  /| |                         
- \ V / _| |_\ |_/ /                         
-  \_/  \___(_)___/                          
-                                            
-                """)
+    print(r"""
+ __      __                    __       _      
+ \ \    / /                   / _|     | |     
+  \ \  / /__ _ __   __ _  ___| |_ _   _| |     
+   \ \/ / _ \ '_ \ / _` |/ _ \  _| | | | |     
+    \  /  __/ | | | (_| |  __/ | | |_| | |     
+  _  \/_\___|_| |_|\__, |\___|_|__\__,_|_| _   
+ | |  | |           __/ |      |  __ \    | |  
+ | |__| | ___  _ __|___/_ _   _| |__) |__ | |_ 
+ |  __  |/ _ \| '_ \ / _ \ | | |  ___/ _ \| __|
+ | |  | | (_) | | | |  __/ |_| | |  | (_) | |_ 
+ |_|  |_|\___/|_| |_|\___|\__, |_|   \___/ \__|
+                           __/ |               
+                          |___/                
+                        By: sonicCrypt0r""")
 
 
 main()
