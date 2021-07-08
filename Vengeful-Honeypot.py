@@ -13,7 +13,7 @@ import datetime
 import subprocess
 
 ######################################
-VERSION = 0.2
+VERSION = 0.21
 LOGFILENAME = "intrusion.log"  # Enter output filename
 MODE = 1  # Mode 1: Active | Mode 0: Passive
 
