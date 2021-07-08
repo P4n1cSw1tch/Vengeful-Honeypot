@@ -83,7 +83,7 @@ def checkUpdate():
 
     # Download newest version of 'Cisco-Device-Analyzer.py' from Github with the name 'Cisco-Device-Analyzer_new.py'
     url = \
-        'https://raw.githubusercontent.com/sonicCrypt0r/Vengeful-Honeypot/main/VengefulHoneypot.py' #Location Where Updated Source Code Will Be
+        'https://raw.githubusercontent.com/sonicCrypt0r/Vengeful-Honeypot/main/Vengeful-Honeypot.py' #Location Where Updated Source Code Will Be
     sprint(pStatus('GOOD') + 'Checking For Updates... ')
     r = requests.get(url, verify=False)
     open(newScriptName, 'wb').write(r.content)
