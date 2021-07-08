@@ -13,7 +13,7 @@ import datetime
 import subprocess
 
 ######################################
-VERSION = 0.1
+VERSION = 0.01
 LOGFILENAME = "intrusion.log"  # Enter output filename
 MODE = 1  # Mode 1: Active | Mode 0: Passive
 
@@ -213,6 +213,35 @@ def seperator():
 
 def closeseperator():
     return "-------------------------------------------------------------------------------"
+
+
+def pStatus(status):
+    #This function is for fancy output throughout the program
+
+    # Colors used for fancy output
+    COLORS = {
+        'WARN': '\033[93m',
+        'GOOD': '\033[92m',
+        'BAD': '\033[91m',
+        'INPUT': '\033[96m',
+        'ENDC': '\033[0m',
+        'UP': '\033[F',
+        }
+
+    if status == 'GOOD':
+        return '\n' + COLORS['ENDC'] + '[' + COLORS['GOOD'] + '+' \
+            + COLORS['ENDC'] + '] '
+    if status == 'BAD':
+        return '\n' + COLORS['ENDC'] + '[' + COLORS['BAD'] + '+' \
+            + COLORS['ENDC'] + '] '
+    if status == 'WARN':
+        return '\n' + COLORS['ENDC'] + '[' + COLORS['WARN'] + '+' \
+            + COLORS['ENDC'] + '] '
+    if status == 'INPUT':
+        return '\n' + COLORS['ENDC'] + '[' + COLORS['INPUT'] + '+' \
+            + COLORS['ENDC'] + '] '
+    if status == 'UP':
+        return COLORS['UP']
 
 
 def menu():
